@@ -1,2 +1,2 @@
-# disaster_tweets
-Project to provide a solution to the NLP Kaggle problem in sentiment analysis.
+# Introduction
+In this data science project we consider the Kaggle nlp challenge involving designing a high performing disaster tweet predictor using Twitter (now X) data.
