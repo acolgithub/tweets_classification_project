@@ -7,13 +7,29 @@
 
     <body>
         <h1> Diaster tweets Project </h1>
-
         <br>
 
         <p> 
-            This is the home page for the app mentioned in this <a href='https://github.com/acolgithub/disaster_tweets'> Github repository </a>. <br>
-            The model makes use of the <a href="https://www.kaggle.com/competitions/nlp-getting-started/overview"> Kaggle disaster tweets dataset </a>. <br>
+            This is the home page for the app mentioned in this <a href='https://github.com/acolgithub/disaster_tweets'> Github repository </a>.
+            <br>
+            The model makes use of the <a href="https://www.kaggle.com/competitions/nlp-getting-started/overview"> Kaggle disaster tweets dataset </a>.
+            <br>
             Below, you can see an overall analysis of the model.
+            <br>
+
+            <br>
+            Please enter some text to obtain a prediction from the model.
+            <br>
+
+            <form action="/" method="POST">
+                <textarea type="text" id="input_text" name="input" rows="4" cols="51" placeholder="Enter text here">{{ user_text_input }}</textarea>
+                <br>
+                <button type="submit" class="button"> Submit </button>
+                <br>
+
+                <br>
+                <textarea type="text" id="output_text" name="output" rows="4" cols="51">{{ response_output }}</textarea>
+            </form>
         </p>
     </body>
 </html>

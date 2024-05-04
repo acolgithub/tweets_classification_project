@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from fns import hello
+from flask import Flask, render_template, request
+from .fns import hello
 
 app = Flask(__name__)
 app.config['TESTING'] = True
@@ -8,6 +8,11 @@ app.config['TESTING'] = True
 def home():
     return render_template("home.html")
 
-@app.route('/predictions')
-def hello_world():
-    return hello()
+@app.route("/", methods=["GET", "POST"])
+def get_user_input():
+    if request.method == "POST":
+        user_input = request.form.get("input")
+        response = user_input.upper()
+        return render_template("home.html", user_text_input=user_input, response_output=response)
+    elif request.method == "GET":
+        return render_template("home.html")
