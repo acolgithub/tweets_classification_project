@@ -13,7 +13,10 @@ from torch.utils.data import DataLoader
 
 from transformers import DebertaForSequenceClassification
 from transformers import get_linear_schedule_with_warmup
+from transformers import logging
 
+
+logging.set_verbosity_error() 
 
 # create model
 class Make_model(nn.Module):
@@ -49,7 +52,7 @@ class Make_model(nn.Module):
         
         else:
             output = self.model(
-                intput_ids=input_ids,
+                input_ids=input_ids,
                 token_type_ids=None,
                 attention_mask=attention_masks,
                 labels=None,

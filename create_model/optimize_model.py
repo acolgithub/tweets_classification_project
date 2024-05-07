@@ -26,6 +26,7 @@ from torch.utils.data import DataLoader, random_split, RandomSampler, Sequential
 
 # using version 4.20.1
 from transformers import DebertaTokenizer
+from transformers import logging
 from transformers import DebertaForSequenceClassification
 from transformers import get_linear_schedule_with_warmup
 
