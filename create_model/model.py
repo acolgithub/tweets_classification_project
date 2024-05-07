@@ -15,52 +15,6 @@ from transformers import DebertaForSequenceClassification
 from transformers import get_linear_schedule_with_warmup
 
 
-
-# # get deberta
-# class Deberta_model(nn.Module):
-#     def __init__(self, params: Params) -> None:
-#         super(Deberta_model, self).__init__()
-#         self.model = DebertaForSequenceClassification.from_pretrained(
-#             "microsoft/deberta-base",               # base model
-#             num_labels = params.n_output_labels,  # number of outputs
-#             output_attentions = False,              # returns attention weights of all layers
-#             output_hidden_states = False            # returns hidden states of all layers
-#         )
-
-
-#     def forward(
-#         self,
-#         input_ids: torch.Tensor,
-#         attention_masks: torch.Tensor,
-#         target: Union[torch.FloatTensor, None]
-#     ) -> Tuple[torch.Tensor, torch.Tensor]:
-        
-#         # if there is a target then return loss and prediction
-#         if target != None:
-#             output = self.deberta(
-#                 input_ids=input_ids,
-#                 token_type_ids=None,
-#                 attention_mask=attention_masks,
-#                 labels=target,
-#                 return_dict=None
-#             )
-            
-#             return output["loss"], output["logits"]
-        
-#         else:
-#             output = self.deberta(
-#                 intput_ids=input_ids,
-#                 token_type_ids=None,
-#                 attention_mask=attention_masks,
-#                 labels=None,
-#                 return_dict=None
-#             )
-            
-#             return output["logits"]
-    
-
-
-
 # create model
 class Make_model(nn.Module):
     
