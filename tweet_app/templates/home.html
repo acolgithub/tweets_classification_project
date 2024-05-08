@@ -3,6 +3,43 @@
 <html>
     <head>
             <title> Machine Learning App Project </title>
+
+            <style>
+                .button {
+                    border: none;
+                    color: white;
+                    padding: 8px 16px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 12px;
+                    margin: 4px 2px;
+                    transition-duration: 0.4s;
+                    cursor: pointer;
+                }
+
+                .button_untrained {
+                    background-color: white;
+                    color: black;
+                    border: 2px solid #04AA6D;
+                }
+
+                .button_untrained:hover {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+
+                .button_trained {
+                    background-color: white;
+                    color: black;
+                    border: 2px solid #008CBA;
+                }
+
+                .button_trained:hover {
+                    background-color: #008CBA;
+                    color: white;
+                }
+            </style>
     </head>
 
     <body>
@@ -22,7 +59,8 @@
             <form action="/" method="POST">
                 <textarea type="text" id="input_text" name="input" rows="4" cols="51" placeholder="Enter text here">{{ user_text_input }}</textarea>
                 <br>
-                <button type="submit" class="button"> Submit </button>
+                <button type="submit" name="button" value="untrained_prediction" class="button button_untrained"> Untrained Prediction </button>
+                <button type="submit" name="button"  value="trained_prediction" class="button button_trained"> Trained Prediction </button>
                 <br>
 
                 <br>

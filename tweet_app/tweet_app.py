@@ -22,18 +22,11 @@ params = Params(device=device)
 # get model to store saved model
 model = Make_model(params)
 
+# set number of trained predictions
+num_trained_predictions = 0
+
 @app.route("/")
 def home():
-
-    # try to read in model
-    try:
-        # get best saved model
-        model.model.load_state_dict(torch.load("create_trained_model/model/model.pth"), strict=False)
-        model.model.eval()
-
-    except FileNotFoundError:
-        abort(500)
-
     return render_template("home.html")
 
 @app.route("/", methods=["GET", "POST"])
@@ -48,18 +41,36 @@ def get_user_input():
         # process text
         preprocessed_user_input = preprocess_text([user_input], params)
 
-        # create logits
-        logits = model(
-            input_ids = preprocessed_user_input[:, :params.max_len],
-            attention_masks = preprocessed_user_input[:, params.max_len:],
-            target = None
-        )
-        
-        # create prediction
-        prediction = torch.argmax(logits, axis=1).flatten().item()
+        if request.form["button"] == "trained_prediction" and num_trained_predictions == 0:
+            # try to read in model
+            try:
+                # get best saved model
+                model.model.load_state_dict(torch.load("create_trained_model/model/model.pth"), strict=False)
+                num_trained_predictions = 1
+
+            except FileNotFoundError:
+               abort(500)
 
         # create response
-        response = "Your text does " + ("not " * prediction) + "indicate a disaster."
+        response = ""
+
+        if len(user_input) > 0:
+
+            # set evaluation mode
+            model.model.eval()
+
+            # create logits
+            logits = model(
+                input_ids = preprocessed_user_input[:, :params.max_len],
+                attention_masks = preprocessed_user_input[:, params.max_len:],
+                target = None
+            )
+        
+            # create prediction
+            prediction = torch.argmax(logits, axis=1).flatten().item()
+
+            # create response
+            response = "Your text does " + ("not " * prediction) + "indicate a disaster."
 
         return render_template("home.html", user_text_input=user_input, response_output=response)
     
