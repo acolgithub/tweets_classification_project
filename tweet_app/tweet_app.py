@@ -1,6 +1,6 @@
-from get_model.model import Make_model
-from get_model.parameters import Params
-from get_model.preprocessing import preprocess_text
+from create_model.model import Make_model
+from create_model.parameters import Params
+from create_model.preprocessing import preprocess_text
 
 import numpy as np
 import torch
@@ -28,7 +28,7 @@ def home():
     # try to read in model
     try:
         # get best saved model
-        model.model.load_state_dict(torch.load("create_model/model/model.pth"), strict=False)
+        model.model.load_state_dict(torch.load("create_trained_model/model/model.pth"), strict=False)
         model.model.eval()
 
     except FileNotFoundError:
@@ -71,9 +71,9 @@ def get_user_input():
 def read_error(error):
     error_message = """
                         500 Error:
-                        Please create a folder called "model" inside "create_model" and
+                        Please create a folder called "model" inside the current directory and
                         place a model state dictionary called "model.pth" inside.
-                        """
+                    """
     return error_message
     
 

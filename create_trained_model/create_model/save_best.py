@@ -1,5 +1,5 @@
-from parameters import Params
-from model import Make_model
+from create_model.parameters import Params
+from create_model.model import Make_model
 
 import os
 import time
