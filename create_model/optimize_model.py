@@ -40,9 +40,9 @@ try:
 # if data is not found then request user to obtain it
 except FileNotFoundError:
     print("""
-          File not found:
-          Please ensure the current directory contains a folder called "data".
-          Then add the training set (train.csv) and the testing set (test.csv) to "data".
+            File not found:
+            Please ensure the current directory contains a folder called "data".
+            Then add the training set (train.csv) and the testing set (test.csv) to "data".
         """)
 
 

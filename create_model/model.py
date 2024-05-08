@@ -1,4 +1,4 @@
-from create_model.parameters import Params
+from parameters import Params
 
 import time
 import datetime

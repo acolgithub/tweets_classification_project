@@ -1,4 +1,10 @@
-# Introduction
+## Introduction
 
-In this data science project we consider the Kaggle nlp challenge involving designing a high performing disaster tweet predictor using Twitter (now X) data.
-In addition to obtaining a model we aim to create an application using Flask which uses the model to make a prediction on the test dataset.
+In this project we consider the [Kaggle nlp challenge](https://www.kaggle.com/competitions/nlp-getting-started) involving designing a disaster tweet predictor using Twitter (now X) data.
+The project aims to create a program which builds and trains a DeBERTa model.
+In addition to obtaining a model we aim to create an application using Flask which uses the model to make a prediction on some test provided by the user.
+
+## Installation
+
+In order to run this project please install the Python packages listed in requirements.txt.
+In case you wish to train a model using [optimizer_model.py](https://github.com/acolgithub/tweets_classification_project/blob/main/create_model/optimize_model.py), please inlucde a folder called "data" inside "create_model" and add the training (train.csv) and testing (test.csv) files from the [Kaggle nlp challenge page](https://www.kaggle.com/competitions/nlp-getting-started).

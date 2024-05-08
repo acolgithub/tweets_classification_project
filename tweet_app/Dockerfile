@@ -2,8 +2,8 @@
 
 FROM python:3.11-slim
 
-RUN mkdir -p /tweets_classification_project
-WORKDIR /tweets_classification_project
+RUN mkdir -p /tweet_app
+WORKDIR /tweet_app
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
