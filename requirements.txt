@@ -1,6 +1,12 @@
-flask==3.0.3
-pandas==2.2.2
+contractions==0.1.73
+Flask==3.0.3
+nltk==3.8.1
 numpy==1.26.4
+pandas==2.2.2
 scikit-learn==1.4.2
-textblob==0.18.0.post0
-transformers==4.20.1
+torch==2.3.0
+transformers==4.40.2
+
+
+
+

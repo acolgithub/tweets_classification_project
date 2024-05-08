@@ -1,6 +1,6 @@
-from .create_model.model import Make_model
-from .create_model.parameters import Params
-from .create_model.preprocessing import preprocess_text
+from create_model.model import Make_model
+from create_model.parameters import Params
+from create_model.preprocessing import preprocess_text
 
 import numpy as np
 import torch
