@@ -1,4 +1,4 @@
-from parameters import Params
+from create_model.parameters import Params
 
 import re
 import contractions
