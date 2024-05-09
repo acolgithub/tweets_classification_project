@@ -28,7 +28,7 @@ def get_user_input():
 
     # get untrained model
     model = Make_model(params)
-    model.to(device)
+    model.model.to(device)
 
     # if user enters data return prediction
     if request.method == "POST":
