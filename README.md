@@ -13,8 +13,6 @@ In addition, please install the nltk stopwords by running the following command:
 nltk.download("stopwords")
 ```
 
-The application can be run with Docker 26.0.0+
-
 ## Usage
 
 In order to run the app with a trained model please include a folder called "model" inside the "tweet_app" directory which contains a state dictionary file called "model.pth".
