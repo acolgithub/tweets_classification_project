@@ -9,21 +9,9 @@ from typing import Union, Tuple
 from transformers import DebertaForSequenceClassification
 
 
-from flask import Flask, render_template, request, abort, Response
+from flask import Flask, render_template, request, abort
 
 app = Flask(__name__)
-
-# check if cuda is available else use cpu
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-# get parameters used for model
-params = Params(device=device)
-
-# get model to store saved model
-model = Make_model(params)
-
-# set number of trained predictions
-num_trained_predictions = 0
 
 @app.route("/")
 def home():
@@ -31,6 +19,16 @@ def home():
 
 @app.route("/", methods=["GET", "POST"])
 def get_user_input():
+
+    # check if cuda is available else use cpu
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # get parameters used for model
+    params = Params(device=device)
+
+    # get untrained model
+    model = Make_model(params)
+    model.to(device)
 
     # if user enters data return prediction
     if request.method == "POST":
@@ -41,12 +39,13 @@ def get_user_input():
         # process text
         preprocessed_user_input = preprocess_text([user_input], params)
 
-        if request.form["button"] == "trained_prediction" and num_trained_predictions == 0:
+        # if user wants trained prediction replace untrained model with trained one
+        if request.form["button"] == "trained_prediction":
+            
             # try to read in model
             try:
                 # get best saved model
-                model.model.load_state_dict(torch.load("create_trained_model/model/model.pth"), strict=False)
-                num_trained_predictions = 1
+                model.load_state_dict(torch.load("model/model.pth"), strict=False)
 
             except FileNotFoundError:
                abort(500)
@@ -56,21 +55,7 @@ def get_user_input():
 
         if len(user_input) > 0:
 
-            # set evaluation mode
-            model.model.eval()
-
-            # create logits
-            logits = model(
-                input_ids = preprocessed_user_input[:, :params.max_len],
-                attention_masks = preprocessed_user_input[:, params.max_len:],
-                target = None
-            )
-        
-            # create prediction
-            prediction = torch.argmax(logits, axis=1).flatten().item()
-
-            # create response
-            response = "Your text does " + ("not " * prediction) + "indicate a disaster."
+                response = create_response(model, params, preprocessed_user_input)
 
         return render_template("home.html", user_text_input=user_input, response_output=response)
     
@@ -86,7 +71,34 @@ def read_error(error):
                         place a model state dictionary called "model.pth" inside.
                     """
     return error_message
-    
+
+
+
+# define function to obtain application reponse to user input
+def create_response(
+        model: Make_model,
+        params: Params,
+        preprocessed_user_input: str
+) -> str:
+
+    # set evaluation mode
+    model.model.eval()
+
+    # create logits
+    logits = model(
+        input_ids = preprocessed_user_input[:, :params.max_len],
+        attention_masks = preprocessed_user_input[:, params.max_len:],
+        target = None
+    )
+
+    # create prediction
+    prediction = torch.argmax(logits, axis=1).flatten().item()
+
+    # create response
+    response = "Your text does " + ("not " * prediction) + "indicate a disaster."
+        
+    return response
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")

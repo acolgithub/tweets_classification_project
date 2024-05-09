@@ -59,4 +59,5 @@ class Make_model(nn.Module):
                 return_dict=None
             )
             
-            return output["logits"]
+            return output["logits"]           
+        
