@@ -10,7 +10,7 @@ In order to run this project please install the Python packages listed in requir
 In addition, please install the nltk stopwords by running the following command:
 
 ```bash
-$ nltk.download("stopwords")
+nltk.download("stopwords")
 ```
 
 The application can be run with Docker 26.0.0+
