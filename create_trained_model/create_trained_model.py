@@ -58,10 +58,6 @@ def create_trained_model():
     text = train_data.text.values.tolist()
     y = torch.tensor(train_data.target)
 
-    # shrink data
-    text = text[:10]
-    y = y[:10]
-
     # preprocess text
     X = preprocess_text(text, params)
 

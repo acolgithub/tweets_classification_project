@@ -11,6 +11,9 @@ WORKDIR /tweet_app
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+# download NLTK files
+RUN python -m nltk.downloader stopwords
+
 # copy remaining files
 COPY . .
 
