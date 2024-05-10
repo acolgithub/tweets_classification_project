@@ -24,10 +24,10 @@ class Make_model(nn.Module):
     def __init__(self, params: Params) -> None:
         super(Make_model, self).__init__()
         self.model = DebertaForSequenceClassification.from_pretrained(
-            "microsoft/deberta-base",               # base model
-            num_labels = params.n_output_labels,  # number of outputs
-            output_attentions = False,              # returns attention weights of all layers
-            output_hidden_states = False            # returns hidden states of all layers
+            "microsoft/deberta-base",
+            num_labels = params.n_output_labels,
+            output_attentions = False,
+            output_hidden_states = False
         )
 
 
