@@ -19,6 +19,12 @@ from transformers import get_linear_schedule_with_warmup
 
 # store best statistics
 class Best_stats():
+    """
+    Class to store the accuracy, loss, and f1 scores of the best model
+    during training. In addition, provides a method to save the data of
+    the current best model.
+    """
+
     def __init__(
         self,
         best_averaged_train_accuracy = 0,
@@ -28,6 +34,17 @@ class Best_stats():
         best_averaged_val_loss = 1e6,
         best_averaged_val_f1_score = 0
     ) -> None:
+        """Initialize instance of Best_stats with current best of model.
+
+        Keyword arguments:
+        best_averaged_train_accuracy -- training accuracy of best model (default 0)
+        best_averaged_train_loss -- training loss of best model (default 1e6)
+        best_averaged_train_f1_score -- training f1 score of best model (default 0)
+        best_averaged_val_accuracy -- validation accuracy of best model (default 0)
+        best_averaged_val_loss -- validation loss of best model (default 1e6)
+        best_averaged_val_f1_score -- validation f1 score of best model (default 0)
+        """
+
         self.best_average_train_accuracy = best_averaged_train_accuracy
         self.best_average_train_loss = best_averaged_train_loss
         self.best_average_train_f1_score = best_averaged_train_f1_score
@@ -36,6 +53,9 @@ class Best_stats():
         self.best_average_val_f1_score = best_averaged_val_f1_score
         
     def __str__(self) -> str:
+        """
+        Returns attribute names and current values corresponding to best model.
+        """
         
         # get attributes of class
         attrs = vars(self)
@@ -52,6 +72,20 @@ class Best_stats():
         average_val_loss: float,
         average_val_f1_score: float
     ) -> None:
+        """
+        If validation f1 score exceeds current best then update
+        all information with the current model's scores and save
+        model state.
+
+        Keyword arguments:
+        model -- current model in training
+        average_train_accuracy -- training accuracy of model
+        average_train_loss -- training loss of model
+        average_train_f1_score -- training f1 score of model
+        average_val_accuracy -- validation accuracy of model
+        average_val_loss -- validation loss of model
+        average_val_f1_score -- validation f1 score of model
+        """
         
         # track best performance and save the model's state
         if average_val_f1_score > self.best_average_val_f1_score:

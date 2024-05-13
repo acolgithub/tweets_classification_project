@@ -31,7 +31,8 @@ from transformers import DebertaForSequenceClassification
 from transformers import get_linear_schedule_with_warmup
 
 
-def create_trained_model():
+def create_trained_model() -> None:
+    """Trains a DeBERTa model from loaded in training data."""
 
     # try and read in data
     try:
