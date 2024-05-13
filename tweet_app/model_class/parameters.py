@@ -1,5 +1,8 @@
 # set parameters
 class Params():
+    """
+    Class to store parameters needed to define and train the DeBERTa model.
+    """
     
     def __init__(
         self,

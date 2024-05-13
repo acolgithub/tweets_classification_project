@@ -20,8 +20,16 @@ logging.set_verbosity_error()
 
 # create model
 class Make_model(nn.Module):
+    """Class to store the DeBERTa model."""
     
     def __init__(self, params: Params) -> None:
+        """
+        Initialize a DeBERTa model with desired parameters.
+
+        Keyword arguments:
+        params -- parameters used to make the model
+        """
+
         super(Make_model, self).__init__()
         self.model = DebertaForSequenceClassification.from_pretrained(
             "microsoft/deberta-base",
@@ -37,6 +45,15 @@ class Make_model(nn.Module):
         attention_masks: torch.Tensor,
         target: Union[torch.FloatTensor, None]
     ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """
+        Function for the model's forward step which is used during
+        training and make predictions.
+
+        Keyword arguments:
+        input_ids -- the input ids tensor
+        attention_masks -- the attention masks tensor
+        target -- the target tensor
+        """
         
         # if there is a target then return loss and prediction
         if target != None:

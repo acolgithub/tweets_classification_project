@@ -12,6 +12,13 @@ def preprocess_text(
         doc: list[str],
         params: Params
 ) -> torch.Tensor:
+    """
+    Function to preprocess text.
+
+    Keyword arguments:
+    doc -- list of tweets from dataset
+    params -- parameters used to create the model
+    """
     
     # list of ids and attention masks
     encoded_list = []

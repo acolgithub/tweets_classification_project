@@ -20,8 +20,16 @@ logging.set_verbosity_error()
 
 # create model
 class Make_model(nn.Module):
+    """Class to store the DeBERTa model."""
     
     def __init__(self, params: Params) -> None:
+        """
+        Initialize a DeBERTa model with desired parameters.
+
+        Keyword arguments:
+        params -- parameters used to make the model
+        """
+
         super(Make_model, self).__init__()
         self.model = DebertaForSequenceClassification.from_pretrained(
             "microsoft/deberta-base",
@@ -37,6 +45,15 @@ class Make_model(nn.Module):
         attention_masks: torch.Tensor,
         target: Union[torch.FloatTensor, None]
     ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """
+        Function for the model's forward step which is used during
+        training and make predictions.
+
+        Keyword arguments:
+        input_ids -- the input ids tensor
+        attention_masks -- the attention masks tensor
+        target -- the target tensor
+        """
         
         # if there is a target then return loss and prediction
         if target != None:
@@ -69,6 +86,15 @@ class Make_model(nn.Module):
         scheduler: get_linear_schedule_with_warmup,
         params: Params
     ) -> Tuple[float, float, float]:
+        """
+        Function used to train model for a single epoch.
+
+        Keyword arguments:
+        dataloader -- the training dataloader
+        optimizer -- the AdamW optimizer used
+        scheduler -- warmup scheduler
+        params -- parameters used to create model
+        """
         
         # time each training epoch
         t0 = time.time()
@@ -143,6 +169,13 @@ class Make_model(nn.Module):
             dataloader: torch.utils.data.DataLoader,
             params: Params
     ) -> Tuple[float, float, float]:
+        """
+        Function used to test a model on vaidation data.
+
+        Keyword arguments:
+        dataloader -- the testing dataloader
+        params -- parameters used to create the model
+        """
         
         # track validation accuracy, validation loss, and f1
         total_val_accuracy = 0
