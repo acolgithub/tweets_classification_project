@@ -17,4 +17,4 @@ nltk.download("stopwords")
 
 In order to run the application with a trained model please include a folder called "model" inside the "tweet_app" directory which contains a state dictionary file called "model.pth".
 
-In case you wish to train a model [using optimizer_model.py](https://github.com/acolgithub/tweets_classification_project/blob/main/create_model/optimize_model.py), please inlucde a folder called "data" inside the "create_trained_model" directory and add the training (train.csv) and testing (test.csv) files from [the Kaggle nlp challenge page](https://www.kaggle.com/competitions/nlp-getting-started).
+In case you wish to train a model [using optimizer_model.py](https://github.com/acolgithub/tweets_classification_project/blob/main/create_model/optimize_model.py), please inlucde a folder called "data" inside the "create_trained_model" directory and add the training (train.csv) file from [the Kaggle nlp challenge page](https://www.kaggle.com/competitions/nlp-getting-started).

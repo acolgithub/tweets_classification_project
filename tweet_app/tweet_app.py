@@ -80,6 +80,14 @@ def create_response(
         params: Params,
         preprocessed_user_input: str
 ) -> str:
+    """
+    Function to create a response to user input.
+
+    Keyword arguments:
+    model -- model to use for prediction
+    params -- parameters used to create the model
+    preprocessed_user_input -- preprocessed text from user input
+    """
 
     # set evaluation mode
     model.model.eval()

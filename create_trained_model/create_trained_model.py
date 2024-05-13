@@ -36,9 +36,8 @@ def create_trained_model() -> None:
 
     # try and read in data
     try:
-        # read in data
+        # read in training data
         train_data = pd.read_csv("./create_model/data/train.csv")
-        test_data = pd.read_csv("./create_model/data/test.csv")
 
     # if data is not found then request user to obtain it
     except FileNotFoundError:
